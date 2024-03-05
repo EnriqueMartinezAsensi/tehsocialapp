@@ -1,0 +1,37 @@
+.searchInput {
+  display: flex;
+  flex-flow: row;
+  box-sizing: border-box;
+  width: 60%;
+  min-width: 500px;
+  max-width: 1200px;
+  margin: 0px auto 20px auto; /* Arriba | Derecha | Abajo | Izquierda */
+  padding: 5px 10px 5px 10px;
+  border: 0;
+  border-radius: 30px;
+  background-color: #ffffff;
+}
+
+.searchInput input {
+  display: inline-flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-self: center;
+  border: 0;
+  outline: 0;
+  color: rgb(79, 79, 79);
+  background: transparent;
+  margin: 5px;
+}
+
+.searchInput input::placeholder {
+  color: rgb(79, 79, 79);
+}
+
+.searchInput svg {
+  transition: all 0.3s;
+}
+
+.searchInput:focus-within svg {
+  width: 0;
+}

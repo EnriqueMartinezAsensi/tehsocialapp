@@ -1,0 +1,13 @@
+.facepost .backbutton {
+  grid-column: 3/4;
+  width: 20px;
+  padding: 15px;
+  margin: 10px;
+  background-color: white;
+  border-radius: 300px;
+  transition-duration: 0.3s;
+}
+
+.facepost .backbutton:hover {
+  background-color: rgb(239, 239, 239);
+}
