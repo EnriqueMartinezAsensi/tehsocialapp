@@ -14,7 +14,6 @@ const PostGrid = () => {
   const [searchInput, setSearchInput] = useState<string>("");
 
   const handleImput = ({ target }: ChangeEvent<HTMLInputElement>) => {
-    console.log(target.value);
     setSearchInput(target.value);
   };
 
