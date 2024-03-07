@@ -1,0 +1,30 @@
+.pagination {
+  display: flex;
+  margin: 0px auto 20px auto; /* Arriba | Derecha | Abajo | Izquierda */
+  justify-content: center;
+  width: 60%;
+  min-width: 500px;
+  max-width: 1200px;
+}
+
+.pagination input {
+  font-family: arial;
+  text-align: center;
+  width: 2em;
+  flex-grow: 0;
+  border: 0;
+  outline: 0;
+  color: rgb(79, 79, 79);
+  background-color: white;
+  margin: 5px;
+  border-radius: 15px;
+}
+
+.pagination select {
+  justify-self: right;
+  margin: 5px;
+  color: darkgray;
+  background-color: white;
+  border: 0;
+  border-radius: 15px;
+}

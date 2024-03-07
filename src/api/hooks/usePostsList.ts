@@ -1,14 +1,29 @@
 import { useEffect, useState } from "react";
-import { getPostsList } from "../../api/posts";
+import { getPostsList, getAllPostsList } from "../../api/posts";
 import { getUsersList } from "../../api/user";
 
-const usePostsList = (filterMask: string) => {
+const usePostsList = (
+  filterMask: string,
+  page: string,
+  postsPerPage: string
+) => {
   const [fullCardList, setFullCardList] = useState<MiniaturePostList>();
   const [isLoading, setIsloading] = useState(true);
 
-  const getPostsOnLoad = () =>
-    getPostsList().then((postData) => {
-      const allFoundUsers = postData.map((posts) => posts.userId);
+  const getAllOrSomePosts = () => {
+    if (filterMask || postsPerPage === "All") {
+      return getAllPostsList().then((postData) => {
+        return postData;
+      });
+    }
+    return getPostsList(page, postsPerPage).then((postData) => {
+      return postData;
+    });
+  };
+
+  const getPosts = () => {
+    getAllOrSomePosts().then((postData) => {
+      const allFoundUsers = postData?.map((posts) => posts.userId);
       const usersNotRepeated = [...new Set(allFoundUsers)];
       getUsersList(usersNotRepeated).then((userdata) => {
         const miniaturePostList: MiniaturePostList = {
@@ -19,6 +34,7 @@ const usePostsList = (filterMask: string) => {
         setIsloading(false);
       });
     });
+  };
 
   const searchPostByUser = () => {
     const users = fullCardList?.userList.filter((eachUser) =>
@@ -40,8 +56,8 @@ const usePostsList = (filterMask: string) => {
   const filteredCardList = searchPostByUser();
 
   useEffect(() => {
-    getPostsOnLoad();
-  }, []);
+    getPosts();
+  }, [page, filterMask, postsPerPage]);
 
   return { filteredCardList, isLoading };
 };
