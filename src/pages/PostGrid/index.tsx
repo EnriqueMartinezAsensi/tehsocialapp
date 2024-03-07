@@ -34,6 +34,7 @@ const PostGrid = () => {
           setPageNumber(String(Math.abs(Number(pageNumber) - 1) || 1))
         }
         changePostPerPage={({ target }) => setPostsPerPage(target.value)}
+        isPostsPerPageVisible={true}
       />
       {filteredCardList.postList.map((eachPost) => (
         <Cards
@@ -52,6 +53,7 @@ const PostGrid = () => {
           setPageNumber(String(Math.abs(Number(pageNumber) - 1) || 1))
         }
         changePostPerPage={({ target }) => setPostsPerPage(target.value)}
+        isPostsPerPageVisible={false}
       />
     </section>
   );
