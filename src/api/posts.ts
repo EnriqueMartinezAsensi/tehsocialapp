@@ -7,7 +7,7 @@ export const getAllPostsList = async () => {
 };
 
 export const getPaginatedPostsList = async (
-  page: string,
+  page: number,
   postsPerPage: string
 ) => {
   return axios

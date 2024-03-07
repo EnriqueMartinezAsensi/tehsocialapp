@@ -4,7 +4,7 @@ import { getUsersList } from "../../api/user";
 
 const usePostsList = (
   filterMask: string,
-  page: string,
+  page: number,
   postsPerPage: string
 ) => {
   const [fullCardList, setFullCardList] = useState<MiniaturePostList>();
