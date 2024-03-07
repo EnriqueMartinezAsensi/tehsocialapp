@@ -1,0 +1,10 @@
+.hatarrow {
+  padding: 5px;
+  border-radius: 20px;
+  transition: 0.3s;
+}
+
+.hatarrow:hover {
+  background-color: #fff;
+  fill: rgb(146, 146, 146);
+}
