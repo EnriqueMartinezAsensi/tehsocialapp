@@ -9,7 +9,7 @@ import "./styles.css";
 
 const PostGrid = () => {
   const [searchInput, setSearchInput] = useState<string>("");
-  const [pageNumber, setPageNumber] = useState<string>("1");
+  const [pageNumber, setPageNumber] = useState<number>(1);
   const [postsPerPage, setPostsPerPage] = useState<string>("10");
   const { filteredCardList, isLoading } = usePostsList(
     searchInput || "",
@@ -27,14 +27,10 @@ const PostGrid = () => {
         onChangeUserInput={({ target }) => setSearchInput(target.value)}
       />
       <PaginationManager
-        placeholder={pageNumber}
-        onChangeUserInput={({ target }) => setPageNumber(target.value)}
-        add={() => setPageNumber(String(Number(pageNumber) + 1))}
-        substract={() =>
-          setPageNumber(String(Math.abs(Number(pageNumber) - 1) || 1))
-        }
-        changePostPerPage={({ target }) => setPostsPerPage(target.value)}
-        isPostsPerPageVisible={true}
+        currentPage={pageNumber}
+        setCurrentPage={setPageNumber}
+        itemsPerPage={postsPerPage}
+        setItemsPerPage={setPostsPerPage}
       />
       {filteredCardList.postList.map((eachPost) => (
         <Cards
@@ -46,14 +42,10 @@ const PostGrid = () => {
         />
       ))}
       <PaginationManager
-        placeholder={pageNumber}
-        onChangeUserInput={({ target }) => setPageNumber(target.value)}
-        add={() => setPageNumber(String(Number(pageNumber) + 1))}
-        substract={() =>
-          setPageNumber(String(Math.abs(Number(pageNumber) - 1) || 1))
-        }
-        changePostPerPage={({ target }) => setPostsPerPage(target.value)}
-        isPostsPerPageVisible={false}
+        currentPage={pageNumber}
+        setCurrentPage={setPageNumber}
+        itemsPerPage={postsPerPage}
+        setItemsPerPage={setPostsPerPage}
       />
     </section>
   );

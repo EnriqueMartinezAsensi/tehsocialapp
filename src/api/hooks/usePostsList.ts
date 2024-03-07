@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { getPostsList, getAllPostsList } from "../../api/posts";
+import { getPaginatedPostsList, getAllPostsList } from "../../api/posts";
 import { getUsersList } from "../../api/user";
 
 const usePostsList = (
   filterMask: string,
-  page: string,
+  page: number,
   postsPerPage: string
 ) => {
   const [fullCardList, setFullCardList] = useState<MiniaturePostList>();
@@ -16,7 +16,7 @@ const usePostsList = (
         return postData;
       });
     }
-    return getPostsList(page, postsPerPage).then((postData) => {
+    return getPaginatedPostsList(page, postsPerPage).then((postData) => {
       return postData;
     });
   };
