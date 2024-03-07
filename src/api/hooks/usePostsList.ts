@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getPostsList, getAllPostsList } from "../../api/posts";
+import { getPaginatedPostsList, getAllPostsList } from "../../api/posts";
 import { getUsersList } from "../../api/user";
 
 const usePostsList = (
@@ -16,7 +16,7 @@ const usePostsList = (
         return postData;
       });
     }
-    return getPostsList(page, postsPerPage).then((postData) => {
+    return getPaginatedPostsList(page, postsPerPage).then((postData) => {
       return postData;
     });
   };
