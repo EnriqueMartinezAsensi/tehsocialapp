@@ -1,8 +1,8 @@
-import "./styles.css";
+import { MagnifyerStyled } from "./Magnifyer.styled";
 
 const Magnifier = () => {
   return (
-    <svg
+    <MagnifyerStyled
       className="magnifier"
       height="25px"
       width="25px"
@@ -19,7 +19,7 @@ const Magnifier = () => {
 		s-74.1,165.4-165.3,165.4C101.15,357.7,26.95,283.5,26.95,192.3z"
         />
       </g>
-    </svg>
+    </MagnifyerStyled>
   );
 };
 

@@ -1,5 +1,10 @@
-import "./styles.css";
 import Arrow from "../../../../assets/components/svg/arrow";
+import {
+  PageArrowsHolder,
+  PageNumber,
+  PaginationBar,
+  SelectPostsPerPage,
+} from "./PaginationManager.styled";
 
 type PaginationManagerProps = {
   currentPage: number;
@@ -33,17 +38,21 @@ const PaginationManager = ({
   };
 
   return (
-    <div className="postsperpage">
-      <div className="pagination">
+    <PaginationBar>
+      <PageArrowsHolder>
         <div onClick={() => substract()}>
           <Arrow angle={180} size={25} color="#aaa" />
         </div>
-        <input type="text" onChange={handlePageInput} value={currentPage} />
+        <PageNumber
+          type="text"
+          onChange={handlePageInput}
+          value={currentPage}
+        />
         <div onClick={() => add()}>
           <Arrow angle={0} size={25} color="#aaa" />
         </div>
-      </div>
-      <select
+      </PageArrowsHolder>
+      <SelectPostsPerPage
         onChange={({ target }) => setItemsPerPage(target.value)}
         value={itemsPerPage}
       >
@@ -52,8 +61,8 @@ const PaginationManager = ({
         <option value="10">10</option>
         <option value="25">25</option>
         <option value="50">50</option>
-      </select>
-    </div>
+      </SelectPostsPerPage>
+    </PaginationBar>
   );
 };
 

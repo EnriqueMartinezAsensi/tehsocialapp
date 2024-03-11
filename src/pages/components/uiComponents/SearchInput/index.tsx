@@ -1,15 +1,15 @@
 import Magnifier from "../../../../assets/components/svg/magnifier";
-import "./style.css";
+import { InputHolder, TextInput } from "./SearchImput.styled";
 
 type SearchInputProps = {
   onChangeUserInput: React.ChangeEventHandler<HTMLInputElement>;
 };
 const SearchInput = ({ onChangeUserInput }: SearchInputProps) => {
   return (
-    <label className="searchInput">
+    <InputHolder>
       <Magnifier />
-      <input placeholder="Search" onChange={onChangeUserInput} />
-    </label>
+      <TextInput placeholder="Search" onChange={onChangeUserInput} />
+    </InputHolder>
   );
 };
 
