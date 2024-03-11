@@ -1,8 +1,8 @@
-import FullPostRender from "../components/PostDetailedComponents/index";
+import FullPostRender from "../components/PostDetailedComponents/FullPost/index";
 import { useParams } from "react-router-dom";
 import Spinner from "../../assets/components/svg/spinner";
-import "./styles.css";
 import usePost from "../../api/hooks/usePost";
+import { PostDetailedHolder } from "./PostDetailed.styled";
 
 const PostDetailed = () => {
   const { postID } = useParams();
@@ -13,9 +13,9 @@ const PostDetailed = () => {
   }
 
   return (
-    <div className="facepost">
+    <PostDetailedHolder>
       <FullPostRender post={fullPostData!} />
-    </div>
+    </PostDetailedHolder>
   );
 };
 

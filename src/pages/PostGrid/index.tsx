@@ -5,7 +5,7 @@ import Spinner from "../../assets/components/svg/spinner";
 import usePostsList from "../../api/hooks/usePostsList";
 import { useState } from "react";
 
-import "./styles.css";
+import { PostGridHolder } from "./PostGrid.styled";
 
 const PostGrid = () => {
   const [searchInput, setSearchInput] = useState<string>("");
@@ -22,7 +22,7 @@ const PostGrid = () => {
   }
 
   return (
-    <section className="PostGrid">
+    <PostGridHolder>
       <SearchInput
         onChangeUserInput={({ target }) => setSearchInput(target.value)}
       />
@@ -47,7 +47,7 @@ const PostGrid = () => {
         itemsPerPage={postsPerPage}
         setItemsPerPage={setPostsPerPage}
       />
-    </section>
+    </PostGridHolder>
   );
 };
 

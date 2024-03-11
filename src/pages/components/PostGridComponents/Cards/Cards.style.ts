@@ -1,4 +1,6 @@
-.cards {
+import styled from "styled-components";
+
+export const FullCard = styled.div`
   display: grid;
   grid-template-columns: 90px auto;
   background-color: white;
@@ -8,28 +10,29 @@
   min-width: 500px;
   max-width: 1200px;
   border-radius: 12px;
-}
+`;
 
-.cards img {
+export const CardHeader = styled.div`
+  grid-column: 1 / 3;
+  grid-template-columns: 90px auto;
+  display: grid;
+`;
+
+export const ProfileIcon = styled.img`
   width: 60px;
   grid-row: 1 / 4;
   margin: 10px 5px 2px 25px; /* Arriba | Derecha | Abajo | Izquierda */
-}
+`;
 
-.cards section div {
-  display: grid;
-  width: fit-content;
-}
-
-.cards h3 {
+export const CardTitle = styled.h3`
   grid-column: 2;
   text-align: left;
   justify-self: left;
   margin: 10px 0px 2px 5px;
   padding: 0;
-}
+`;
 
-.cards h5 {
+export const CardUserName = styled.h5`
   grid-row: 2;
   grid-column: 2;
   text-align: left;
@@ -37,19 +40,19 @@
   justify-self: left;
   margin: 0px 0px 5px 5px;
   padding: 0;
-}
+`;
 
-.cards p {
+export const CardBody = styled.p`
   grid-row: 5/6;
   grid-column: 1/3;
   margin: 15px;
   text-align: left;
-}
+`;
 
-.cards hr {
+export const CardLikeLine = styled.hr`
   grid-row: 6/7;
   grid-column: 1/3;
   color: rgb(224, 219, 219);
   margin: 10px 20px 10px 20px; /* Arriba | Derecha | Abajo | Izquierda */
   line-height: 1;
-}
+`;

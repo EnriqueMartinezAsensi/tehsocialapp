@@ -1,4 +1,6 @@
-.postsperpage {
+import styled from "styled-components";
+
+export const PaginationBar = styled.div`
   display: grid;
   width: 60%;
   min-width: 500px;
@@ -6,24 +8,21 @@
   margin: 0px auto 20px auto; /* Arriba | Derecha | Abajo | Izquierda */
   grid-template-columns: 100% 0%;
   grid-template-rows: 100%;
-}
-
-.postsperpage select {
+`;
+export const SelectPostsPerPage = styled.select`
   justify-self: flex-end;
   margin: 5px;
   color: darkgray;
   background-color: white;
   border: 0;
   border-radius: 15px;
-}
-
-.pagination {
+`;
+export const PageArrowsHolder = styled.div`
   grid-column: 0;
   display: flex;
   justify-content: center;
-}
-
-.pagination input {
+`;
+export const PageNumber = styled.input`
   font-family: arial;
   text-align: center;
   width: 2em;
@@ -34,4 +33,4 @@
   background-color: white;
   margin: 5px;
   border-radius: 15px;
-}
+`;

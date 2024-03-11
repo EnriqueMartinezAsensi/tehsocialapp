@@ -1,6 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import UserIcon from "../../../../assets/images/ProfileIcon.svg";
-import "./style.css";
+import {
+  CardBody,
+  CardHeader,
+  CardLikeLine,
+  CardTitle,
+  CardUserName,
+  FullCard,
+  ProfileIcon,
+} from "./Cards.style";
 
 type CardsProps = {
   post: PostData;
@@ -15,15 +23,15 @@ const Cards = ({ post, user }: CardsProps) => {
   return !post || !user ? (
     <div></div>
   ) : (
-    <div className="cards" onClick={() => navigate(`/post/${post.id}`)}>
-      <div className="cards">
-        <img src={UserIcon} />
-        <h3>{post!.title}</h3>
-        <h5>{user!.name}</h5>
-      </div>
-      <p>{post.body}</p>
-      <hr></hr>
-    </div>
+    <FullCard onClick={() => navigate(`/post/${post.id}`)}>
+      <CardHeader>
+        <ProfileIcon src={UserIcon} />
+        <CardTitle>{post!.title}</CardTitle>
+        <CardUserName>{user!.name}</CardUserName>
+      </CardHeader>
+      <CardBody>{post.body}</CardBody>
+      <CardLikeLine></CardLikeLine>
+    </FullCard>
   );
 };
 
