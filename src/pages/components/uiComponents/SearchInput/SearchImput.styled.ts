@@ -12,6 +12,12 @@ export const InputHolder = styled.label`
   border: 0;
   border-radius: 30px;
   background-color: #ffffff;
+  svg {
+    transition: all 0.3s;
+  }
+  &:focus-within svg {
+    width: 0;
+  }
 `;
 
 export const TextInput = styled.input`

@@ -1,7 +1,0 @@
-.searchInput svg {
-  transition: all 0.3s;
-}
-
-.searchInput:focus-within svg {
-  width: 0;
-}
