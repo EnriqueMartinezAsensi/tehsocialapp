@@ -13,10 +13,9 @@ const Arrow = ({ size, angle, color }: ArrowProps) => {
       id="b385ca18-4b85-46d4-bb4b-571c73a19812"
       data-name="b922a425-e5e0-4ef1-881c-5748460fd139"
       viewBox="0 0 30.125 18.1738"
-      width={`${size}px`}
-      height={`${size}px`}
-      fill={color}
-      transform={`rotate(${angle})`}
+      size={size}
+      angle={angle}
+      color={color}
     >
       <title>arrow-icon-size3</title>
       <path

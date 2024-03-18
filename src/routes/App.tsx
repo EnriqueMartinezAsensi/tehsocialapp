@@ -1,6 +1,11 @@
-import "./App.css";
+import GlobalStyles from "../theme/GlobalStyles";
 import AppRoutes from "./AppRoutes";
 
 export default function Root() {
-  return <AppRoutes />;
+  return (
+    <>
+      <AppRoutes />
+      <GlobalStyles />
+    </>
+  );
 }
