@@ -6,6 +6,7 @@ import usePostsList from "../../api/hooks/usePostsList";
 import { useState } from "react";
 
 import { PostGridHolder } from "./PostGrid.styled";
+import PostCreatorButton from "../components/uiComponents/PostCreatorButton";
 
 const PostGrid = () => {
   const [searchInput, setSearchInput] = useState<string>("");
@@ -32,6 +33,7 @@ const PostGrid = () => {
         itemsPerPage={postsPerPage}
         setItemsPerPage={setPostsPerPage}
       />
+      <PostCreatorButton />
       {filteredCardList.postList.map((eachPost) => (
         <Cards
           key={eachPost.id}
