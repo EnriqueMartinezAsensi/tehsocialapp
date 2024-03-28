@@ -22,10 +22,5 @@ export const getPost = async (postID: number) => {
 };
 
 export const postNewPost = (post: PostData) => {
-  return (
-    axios
-      .post<PostData>(`${URL}/posts`, post)
-      //.then(({data}) => data);
-      .then(({ data }) => data)
-  );
+  return axios.post<PostData>(`${URL}/posts`, post).then(({ data }) => data);
 };

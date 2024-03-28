@@ -7,10 +7,10 @@ import {
   TextAreaHolder,
   TextInput,
   UserName,
-} from "./PostCreatorButton.styled";
+} from "./PostCreator.styled";
 import { postNewPost } from "../../../../api/posts";
 
-const PostCreatorButton = () => {
+const PostCreator = () => {
   const [isFocused, setIsFocused] = useState(false);
   const [newPostText, setNewPostText] = useState<string>("");
   const isDisplayed = isFocused || !!newPostText;
@@ -53,4 +53,4 @@ const PostCreatorButton = () => {
   );
 };
 
-export default PostCreatorButton;
+export default PostCreator;
