@@ -20,3 +20,7 @@ export const getPaginatedPostsList = async (
 export const getPost = async (postID: number) => {
   return axios.get<PostData>(`${URL}/posts/${postID}`).then(({ data }) => data);
 };
+
+export const postNewPost = (post: PostData) => {
+  return axios.post<PostData>(`${URL}/posts`, post).then(({ data }) => data);
+};

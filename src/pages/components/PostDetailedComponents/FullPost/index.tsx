@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import PostComment from "../PostComment/PostComment";
+import PostComment from "../PostComment";
 
 import UserIcon from "../../../../assets/images/ProfileIcon.svg";
 import BackArrow from "../../../../assets/images/arrow.png";

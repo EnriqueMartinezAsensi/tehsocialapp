@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 export const PaginationBar = styled.div`
   display: grid;
-  width: 60%;
-  min-width: 500px;
-  max-width: 1200px;
-  margin: 0px auto 20px auto; /* Arriba | Derecha | Abajo | Izquierda */
+  width: 30%;
+  min-width: 250px;
+  max-width: 500px;
+  margin: 10px auto 20px auto; /* Arriba | Derecha | Abajo | Izquierda */
   grid-template-columns: 100% 0%;
   grid-template-rows: 100%;
 `;

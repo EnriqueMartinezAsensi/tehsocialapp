@@ -2,8 +2,8 @@
 
 declare type PostData = {
   userId: number;
-  id: number;
-  title: string;
+  id?: number;
+  title?: string;
   body: string;
 };
 

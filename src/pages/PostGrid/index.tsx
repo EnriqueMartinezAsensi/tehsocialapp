@@ -3,6 +3,7 @@ import SearchInput from "../components/uiComponents/SearchInput";
 import PaginationManager from "../components/uiComponents/PaginationManager";
 import Spinner from "../../assets/components/svg/spinner";
 import usePostsList from "../../api/hooks/usePostsList";
+import PostCreator from "../components/uiComponents/PostCreator";
 import { useState } from "react";
 
 import { PostGridHolder } from "./PostGrid.styled";
@@ -32,6 +33,7 @@ const PostGrid = () => {
         itemsPerPage={postsPerPage}
         setItemsPerPage={setPostsPerPage}
       />
+      <PostCreator />
       {filteredCardList.postList.map((eachPost) => (
         <Cards
           key={eachPost.id}
