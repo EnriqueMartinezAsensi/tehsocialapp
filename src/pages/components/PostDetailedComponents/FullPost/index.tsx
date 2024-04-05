@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import PostComment from "../PostComment";
-
 import UserIcon from "../../../../assets/images/ProfileIcon.svg";
-import BackArrow from "../../../../assets/images/arrow.png";
+import Arrow from "../../../../assets/components/svg/arrow";
+import { useTheme } from "styled-components";
 
 import {
   BackButton,
@@ -25,6 +25,7 @@ type FullPostRenderProps = {
 
 const FullPostRender = ({ post }: FullPostRenderProps) => {
   const navigate = useNavigate();
+  const theme = useTheme();
 
   return (
     <section>
@@ -32,7 +33,9 @@ const FullPostRender = ({ post }: FullPostRenderProps) => {
         <UserIconStyle src={UserIcon} />
         <PostTitle>{post.post.title}</PostTitle>
         <PostUser>{post.user.name}</PostUser>
-        <BackButton src={BackArrow} onClick={() => navigate(`/`)} />
+        <BackButton onClick={() => navigate(`/`)}>
+          <Arrow angle={180} size={25} color={theme.colors.secondary.main} />
+        </BackButton>
       </FullPostHeader>
       <BodyHolder>
         <PostBody>{post.post.body}</PostBody>

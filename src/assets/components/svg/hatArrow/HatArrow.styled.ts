@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 export const HatArrowSvg = styled.svg`
   padding: 5px;
-  border-radius: 20px;
-  transition: 0.3s;
+  border-radius: ${({ theme }) => theme.radiuses.medium}px;
+  transition: ${({ theme }) => theme.transitions.normal}s;
   &:hover {
-    background-color: #fff;
-    fill: rgb(146, 146, 146);
+    background-color: ${({ theme }) => theme.colors.primary.main};
+    fill: ${({ theme }) => theme.colors.secondary.main};
   }
 `;
