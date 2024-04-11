@@ -1,6 +1,6 @@
 // import original module declarations
 import "styled-components";
-import theme from "./theme";
+import theme from "./darkThemeTheme";
 
 type Theme = typeof theme;
 

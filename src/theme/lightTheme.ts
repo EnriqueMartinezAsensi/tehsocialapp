@@ -1,4 +1,4 @@
-const theme = {
+const lightTheme = {
   colors: {
     common: {
       black: `black`,
@@ -36,4 +36,4 @@ const theme = {
   },
 };
 
-export default theme;
+export default lightTheme;

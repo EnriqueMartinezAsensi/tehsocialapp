@@ -7,6 +7,7 @@ import PostCreator from "../components/uiComponents/PostCreator";
 import { useState } from "react";
 
 import { PostGridHolder } from "./PostGrid.styled";
+import ThemeSwitch from "../components/uiComponents/ThemeSwitch";
 
 const PostGrid = () => {
   const [searchInput, setSearchInput] = useState<string>("");
