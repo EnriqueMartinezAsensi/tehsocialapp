@@ -3,13 +3,13 @@ import styled from "styled-components";
 export const FullCard = styled.div`
   display: grid;
   grid-template-columns: 90px auto;
-  background-color: white;
+  background-color: ${({ theme }) => theme.colors.primary.main};
   margin: 5px auto 5px auto; /* Arriba | Derecha | Abajo | Izquierda */
-  color: black;
+  color: ${({ theme }) => theme.colors.primary.text};
   width: 60%;
   min-width: 500px;
   max-width: 1200px;
-  border-radius: 12px;
+  border-radius: ${({ theme }) => theme.radiuses.small}px;
 `;
 
 export const CardHeader = styled.div`
@@ -36,7 +36,7 @@ export const CardUserName = styled.h5`
   grid-row: 2;
   grid-column: 2;
   text-align: left;
-  color: rgb(103, 103, 103);
+  color: ${({ theme }) => theme.colors.secondary.main};
   justify-self: left;
   margin: 0px 0px 5px 5px;
   padding: 0;
@@ -52,7 +52,7 @@ export const CardBody = styled.p`
 export const CardLikeLine = styled.hr`
   grid-row: 6/7;
   grid-column: 1/3;
-  color: rgb(224, 219, 219);
+  color: ${({ theme }) => theme.colors.light.main};
   margin: 10px 20px 10px 20px; /* Arriba | Derecha | Abajo | Izquierda */
   line-height: 1;
 `;

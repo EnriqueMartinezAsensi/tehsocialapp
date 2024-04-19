@@ -1,4 +1,5 @@
 import Magnifier from "../../../../assets/components/svg/magnifier";
+import ThemeSwitch from "../ThemeSwitch";
 import { InputHolder, TextInput } from "./SearchImput.styled";
 
 type SearchInputProps = {
@@ -9,6 +10,7 @@ const SearchInput = ({ onChangeUserInput }: SearchInputProps) => {
     <InputHolder>
       <Magnifier />
       <TextInput placeholder="Search" onChange={onChangeUserInput} />
+      <ThemeSwitch />
     </InputHolder>
   );
 };

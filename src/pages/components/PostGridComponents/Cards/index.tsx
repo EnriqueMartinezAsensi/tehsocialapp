@@ -19,7 +19,6 @@ type CardsProps = {
 
 const Cards = ({ post, user }: CardsProps) => {
   const navigate = useNavigate();
-
   return !post || !user ? (
     <div></div>
   ) : (

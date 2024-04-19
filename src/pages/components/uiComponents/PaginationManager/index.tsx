@@ -1,4 +1,5 @@
 import Arrow from "../../../../assets/components/svg/arrow";
+import { useTheme } from "styled-components";
 import {
   PageArrowsHolder,
   PageNumber,
@@ -19,6 +20,8 @@ const PaginationManager = ({
   itemsPerPage,
   setItemsPerPage,
 }: PaginationManagerProps) => {
+  const theme = useTheme();
+
   const substract = () => {
     if (currentPage > 1) setCurrentPage(currentPage - 1);
   };
@@ -41,7 +44,7 @@ const PaginationManager = ({
     <PaginationBar>
       <PageArrowsHolder>
         <div onClick={() => substract()}>
-          <Arrow angle={180} size={25} color="#aaa" />
+          <Arrow angle={180} size={25} color={theme.colors.secondary.main} />
         </div>
         <PageNumber
           type="text"
@@ -49,7 +52,7 @@ const PaginationManager = ({
           value={currentPage}
         />
         <div onClick={() => add()}>
-          <Arrow angle={0} size={25} color="#aaa" />
+          <Arrow angle={0} size={25} color={theme.colors.secondary.main} />
         </div>
       </PageArrowsHolder>
       <SelectPostsPerPage

@@ -2,20 +2,20 @@ import styled from "styled-components";
 
 type ArrowSvgProps = {
   size: number;
-  angle: number;
+  $angle: number;
   color: string;
 };
 
 export const ArrowSvg = styled.svg<ArrowSvgProps>`
   padding: 5px;
-  border-radius: 20px;
-  transition: 0.3s;
+  border-radius: ${({ theme }) => theme.radiuses.medium}px;
+  transition: ${({ theme }) => theme.transitions.normal}s;
   width: ${({ size }) => size}px;
   height: ${({ size }) => size}px;
   fill: ${({ color }) => color};
-  transform: rotate(${({ angle }) => angle}deg);
+  transform: rotate(${({ $angle }) => $angle}deg);
   &:hover {
-    background-color: #fff;
-    fill: rgb(146, 146, 146);
+    background-color: ${({ theme }) => theme.colors.primary.main};
+    fill: ${({ theme }) => theme.colors.secondary.main};
   }
 `;

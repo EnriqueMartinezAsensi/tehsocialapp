@@ -12,10 +12,10 @@ export const PaginationBar = styled.div`
 export const SelectPostsPerPage = styled.select`
   justify-self: flex-end;
   margin: 5px;
-  color: darkgray;
-  background-color: white;
+  color: ${({ theme }) => theme.colors.dark.main};
+  background-color: ${({ theme }) => theme.colors.primary.main};
   border: 0;
-  border-radius: 15px;
+  border-radius: ${({ theme }) => theme.radiuses.small}px;
 `;
 export const PageArrowsHolder = styled.div`
   grid-column: 0;
@@ -25,12 +25,13 @@ export const PageArrowsHolder = styled.div`
 export const PageNumber = styled.input`
   font-family: arial;
   text-align: center;
-  width: 2em;
+  width: 2.2em;
+  padding: 2px;
   flex-grow: 0;
   border: 0;
   outline: 0;
-  color: rgb(79, 79, 79);
-  background-color: white;
+  color: ${({ theme }) => theme.colors.dark.main};
+  background-color: ${({ theme }) => theme.colors.primary.main};
   margin: 5px;
   border-radius: 15px;
 `;

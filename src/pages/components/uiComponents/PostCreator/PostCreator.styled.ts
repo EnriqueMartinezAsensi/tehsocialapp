@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 type NewPostHolderProps = {
-  isDisplayed: boolean;
+  $isDisplayed: boolean;
 };
 
 export const NewPostHolder = styled.label<NewPostHolderProps>`
@@ -14,10 +14,10 @@ export const NewPostHolder = styled.label<NewPostHolderProps>`
   margin: 0px auto 5px auto; /* Arriba | Derecha | Abajo | Izquierda */
   padding: 5px 10px 5px 10px;
   border: 0;
-  background-color: #ffffff;
-  transition: all 0.3s;
-  height: ${({ isDisplayed }) => (isDisplayed ? 250 : 55)}px;
-  border-radius: ${({ isDisplayed }) => (isDisplayed ? 12 : 30)}px;
+  background-color: ${({ theme }) => theme.colors.primary.main};
+  transition: all ${({ theme }) => theme.transitions.normal}s;
+  height: ${({ $isDisplayed }) => ($isDisplayed ? 250 : 55)}px;
+  border-radius: ${({ $isDisplayed }) => ($isDisplayed ? 12 : 30)}px;
 `;
 
 export const TextAreaHolder = styled.div`
@@ -28,7 +28,7 @@ export const TextAreaHolder = styled.div`
 
 export const UserName = styled.h5`
   align-self: Start;
-  color: black;
+  color: ${({ theme }) => theme.colors.primary.text};
   height: min-content;
   margin: 12px;
 `;
@@ -51,10 +51,10 @@ export const TextInput = styled.textarea`
   margin: 10px;
   border: 0;
   outline: 0;
-  color: rgb(79, 79, 79);
+  color: ${({ theme }) => theme.colors.dark.main};
   background: transparent;
   &::placeholder {
-    color: rgb(79, 79, 79);
+    ${({ theme }) => theme.colors.dark.main};
   }
 `;
 
@@ -62,12 +62,12 @@ export const SendButton = styled.button`
   justify-content: flex-end;
   align-self: flex-end;
   border: transparent;
-  border-radius: 10px;
+  border-radius: ${({ theme }) => theme.radiuses.small}px;
   padding: 10px;
   margin: 5px;
   color: white;
-  background-color: darkgrey;
-  transition: all 0.3s;
+  background-color: ${({ theme }) => theme.colors.dark.main};
+  transition: all ${({ theme }) => theme.transitions.normal}s;
   &:hover {
     background-color: grey;
   }

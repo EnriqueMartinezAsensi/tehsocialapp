@@ -7,8 +7,8 @@ const GlobalStyles = createGlobalStyle`
     font-weight: 400;
 
     color-scheme: light dark;
-    color: rgba(255, 255, 255, 0.87);
-    background-color: #d9e0e4;
+    color: ${({ theme }) => theme.colors.primary.text};
+    background-color: ${({ theme }) => theme.colors.lightest.main};
 
     font-synthesis: none;
     text-rendering: optimizeLegibility;

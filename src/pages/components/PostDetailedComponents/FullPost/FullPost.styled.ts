@@ -1,17 +1,12 @@
 import styled from "styled-components";
 
-export const BackButton = styled.img`
+export const BackButton = styled.div`
   grid-column: 3/4;
   grid-row: 1/4;
-  width: 20px;
-  padding: 15px;
+  padding: 0px;
   margin: 10px;
-  background-color: white;
-  border-radius: 300px;
-  transition-duration: 0.3s;
-  &:hover {
-    background-color: rgb(239, 239, 239);
-  }
+  background-color: ${({ theme }) => theme.colors.primary.main};
+  transition-duration: ${({ theme }) => theme.transitions.normal};
 `;
 
 export const FullPostHeader = styled.div`
