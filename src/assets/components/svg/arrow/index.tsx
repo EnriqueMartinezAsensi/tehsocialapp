@@ -14,7 +14,7 @@ const Arrow = ({ size, angle, color }: ArrowProps) => {
       data-name="b922a425-e5e0-4ef1-881c-5748460fd139"
       viewBox="0 0 30.125 18.1738"
       size={size}
-      angle={angle}
+      $angle={angle}
       color={color}
     >
       <title>arrow-icon-size3</title>

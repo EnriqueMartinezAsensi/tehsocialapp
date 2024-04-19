@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 type NewPostHolderProps = {
-  isDisplayed: boolean;
+  $isDisplayed: boolean;
 };
 
 export const NewPostHolder = styled.label<NewPostHolderProps>`
@@ -16,8 +16,8 @@ export const NewPostHolder = styled.label<NewPostHolderProps>`
   border: 0;
   background-color: ${({ theme }) => theme.colors.primary.main};
   transition: all ${({ theme }) => theme.transitions.normal}s;
-  height: ${({ isDisplayed }) => (isDisplayed ? 250 : 55)}px;
-  border-radius: ${({ isDisplayed }) => (isDisplayed ? 12 : 30)}px;
+  height: ${({ $isDisplayed }) => ($isDisplayed ? 250 : 55)}px;
+  border-radius: ${({ $isDisplayed }) => ($isDisplayed ? 12 : 30)}px;
 `;
 
 export const TextAreaHolder = styled.div`

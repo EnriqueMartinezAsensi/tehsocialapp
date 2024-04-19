@@ -9,6 +9,7 @@ import {
   UserName,
 } from "./PostCreator.styled";
 import { postNewPost } from "../../../../api/posts";
+import { useToasts } from "../../../../providers/ToastProvider/ToastContext/useToasts";
 
 const PostCreator = () => {
   const [isFocused, setIsFocused] = useState(false);
@@ -16,6 +17,7 @@ const PostCreator = () => {
   const isDisplayed = isFocused || !!newPostText;
   const userID = 11;
   const [newPostUploaded, setNewPostUploaded] = useState<PostData>();
+  const { createToast } = useToasts();
 
   const sendPost = () => {
     const post: PostData = {
@@ -26,6 +28,7 @@ const PostCreator = () => {
       setNewPostUploaded(postedPost);
       setNewPostText("");
       setIsFocused(false);
+      createToast("Message posted.", "success", 4000);
     });
   };
 
@@ -35,7 +38,7 @@ const PostCreator = () => {
     <NewPostHolder
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}
-      isDisplayed={isDisplayed}
+      $isDisplayed={isDisplayed}
     >
       <div>
         <ProfileIcon size={35} />
@@ -54,3 +57,6 @@ const PostCreator = () => {
 };
 
 export default PostCreator;
+function useToast(): { createToast: any } {
+  throw new Error("Function not implemented.");
+}

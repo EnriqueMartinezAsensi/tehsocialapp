@@ -2,6 +2,8 @@ const drakTheme = {
   colors: {
     common: {
       black: `black`,
+      red: `rgb(100,10,10)`,
+      orange: `rgb(150,80,0)`,
     },
     primary: {
       main: `rgb(75, 75, 75)`,
@@ -10,6 +12,7 @@ const drakTheme = {
     secondary: {
       main: `rgb(225, 225, 225)`,
       text: `rgb(125, 125,125)`,
+      translucid: `rgba(225, 225, 225,0.4)`,
     },
     darkest: {
       main: `rgb(245,245, 245)`,

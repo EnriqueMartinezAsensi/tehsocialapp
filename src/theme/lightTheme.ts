@@ -2,6 +2,8 @@ const lightTheme = {
   colors: {
     common: {
       black: `black`,
+      red: `rgb(200,100,100)`,
+      orange: `rgb(200,150,50)`,
     },
     primary: {
       main: `white`,
@@ -10,6 +12,7 @@ const lightTheme = {
     secondary: {
       main: `rgb(126, 126, 126)`,
       text: `rgb(239, 239, 239)`,
+      translucid: `rgba(126, 126, 126,0.6)`,
     },
     darkest: {
       main: `rgb(5, 5, 5)`,

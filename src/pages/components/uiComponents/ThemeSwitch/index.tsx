@@ -1,5 +1,5 @@
 import _default from "styled-components/dist/utils/createWarnTooManyClasses";
-import useThemeSwitch from "../../../../api/providers/ThemeModeProvider/useThemeSwitch";
+import useThemeSwitch from "../../../../providers/ThemeModeProvider/useThemeSwitch";
 import { ThemeSwitchStyled } from "./ThemeSwitch.styled";
 
 const ThemeSwitch = () => {

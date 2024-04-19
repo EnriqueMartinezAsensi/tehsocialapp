@@ -1,5 +1,6 @@
-import CustomThemeProvider from "../api/providers/CustomThemeProvider";
-import ThemeModeProvider from "../api/providers/ThemeModeProvider";
+import CustomThemeProvider from "../providers/CustomThemeProvider";
+import ThemeModeProvider from "../providers/ThemeModeProvider";
+import { ToastProvider } from "../providers/ToastProvider/ToastContext";
 import GlobalStyles from "../theme/GlobalStyles";
 
 import AppRoutes from "./AppRoutes";
@@ -8,7 +9,9 @@ export default function Root() {
   return (
     <ThemeModeProvider>
       <CustomThemeProvider>
-        <AppRoutes />
+        <ToastProvider>
+          <AppRoutes />
+        </ToastProvider>
         <GlobalStyles />
       </CustomThemeProvider>
     </ThemeModeProvider>

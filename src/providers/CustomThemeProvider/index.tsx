@@ -1,5 +1,5 @@
-import drakTheme from "../../../theme/darkTheme";
-import lightTheme from "../../../theme/lightTheme";
+import drakTheme from "../../theme/darkTheme";
+import lightTheme from "../../theme/lightTheme";
 import useThemeContext from "../ThemeModeProvider/useThemeSwitch";
 import { ThemeProvider } from "styled-components";
 
