@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getComents } from "../coments";
 import { getPost } from "../posts";
 import { getUser } from "../user";
@@ -6,13 +6,14 @@ import { PostContext } from "../../providers/PostProvider";
 
 const usePost = (postID: number) => {
   const { posts, setPosts } = useContext(PostContext);
+  const [currentPost, setCurrentPost] = useState<CompletePost>();
 
   const getFullPost = (postID: number) => {
     const desiredPost = posts.find(({ post }) => postID == post.id);
-    if (desiredPost) return desiredPost;
+    if (desiredPost) setCurrentPost(desiredPost);
     fetchFullPost(Number(postID)).then((completePost) => {
       setPosts([...posts, completePost]);
-      return completePost;
+      setCurrentPost(completePost);
     });
   };
 
@@ -35,7 +36,7 @@ const usePost = (postID: number) => {
     getFullPost(Number(postID));
   }, [postID]);
 
-  return { getFullPost };
+  return { currentPost };
 };
 
 export default usePost;
