@@ -10,7 +10,7 @@ const usePost = (postID: number) => {
   const getFullPost = (postID: number) => {
     getPost(Number(postID)).then((postData) => {
       getUser(postData.userId).then((userData) => {
-        getComents(postData.id).then((comentData) => {
+        getComents(postData.id!).then((comentData) => {
           const fullPost: CompletePost = {
             post: postData,
             user: userData,
