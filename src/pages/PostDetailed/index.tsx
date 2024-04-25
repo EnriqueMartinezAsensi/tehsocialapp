@@ -6,15 +6,17 @@ import { PostDetailedHolder } from "./PostDetailed.styled";
 
 const PostDetailed = () => {
   const { postID } = useParams();
-  const { fullPostData, isLoading } = usePost(Number(postID));
+  const { getFullPost } = usePost(Number(postID));
 
-  if (isLoading) {
+  const fullPost = getFullPost(Number(postID));
+
+  if (!fullPost) {
     return <Spinner />;
   }
 
   return (
     <PostDetailedHolder>
-      <FullPostRender post={fullPostData!} />
+      <FullPostRender post={fullPost} />
     </PostDetailedHolder>
   );
 };

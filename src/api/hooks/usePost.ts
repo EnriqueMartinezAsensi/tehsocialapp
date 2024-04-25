@@ -1,23 +1,31 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { getComents } from "../coments";
 import { getPost } from "../posts";
 import { getUser } from "../user";
+import { PostContext } from "../../providers/PostProvider";
 
 const usePost = (postID: number) => {
-  const [fullPostData, setFullPostData] = useState<CompletePost>();
-  const [isLoading, setIsloading] = useState(true);
+  const { posts, setPosts } = useContext(PostContext);
 
   const getFullPost = (postID: number) => {
-    getPost(Number(postID)).then((postData) => {
-      getUser(postData.userId).then((userData) => {
-        getComents(postData.id).then((comentData) => {
+    const desiredPost = posts.find(({ post }) => postID == post.id);
+    if (desiredPost) return desiredPost;
+    fetchFullPost(Number(postID)).then((completePost) => {
+      setPosts([...posts, completePost]);
+      return completePost;
+    });
+  };
+
+  const fetchFullPost = (postID: number) => {
+    return getPost(Number(postID)).then((postData) => {
+      return getUser(postData.userId).then((userData) => {
+        return getComents(postData.id).then((comentData) => {
           const fullPost: CompletePost = {
             post: postData,
             user: userData,
             comentList: comentData,
           };
-          setFullPostData(fullPost);
-          setIsloading(false);
+          return fullPost;
         });
       });
     });
@@ -25,9 +33,9 @@ const usePost = (postID: number) => {
 
   useEffect(() => {
     getFullPost(Number(postID));
-  }, []);
+  }, [postID]);
 
-  return { fullPostData, isLoading };
+  return { getFullPost };
 };
 
 export default usePost;

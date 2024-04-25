@@ -32,8 +32,6 @@ const PostCreator = () => {
     });
   };
 
-  console.log(newPostUploaded);
-
   return (
     <NewPostHolder
       onFocus={() => setIsFocused(true)}

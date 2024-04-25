@@ -33,7 +33,6 @@ const PaginationManager = ({
   const handlePageInput: React.ChangeEventHandler<HTMLInputElement> = ({
     target,
   }) => {
-    console.log(target.value);
     const isValidPage = !isNaN(Number(target.value));
     if (isValidPage) {
       setCurrentPage(Number(target.value));
@@ -59,7 +58,6 @@ const PaginationManager = ({
         onChange={({ target }) => setItemsPerPage(target.value)}
         value={itemsPerPage}
       >
-        <option value="All">All</option>
         <option value="5">5</option>
         <option value="10">10</option>
         <option value="25">25</option>

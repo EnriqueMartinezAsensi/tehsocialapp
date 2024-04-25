@@ -12,21 +12,48 @@ const PostGrid = () => {
   const [searchInput, setSearchInput] = useState<string>("");
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [postsPerPage, setPostsPerPage] = useState<string>("10");
-  const { filteredCardList, isLoading } = usePostsList(
-    searchInput || "",
-    pageNumber,
-    postsPerPage
-  );
+  const { paginatedCards } = usePostsList(pageNumber, postsPerPage);
 
-  if (isLoading || !filteredCardList) {
-    return <Spinner />;
+  const searchPostByUser = () => {
+    if (searchInput) {
+      const users = paginatedCards?.userList.filter((eachUser) =>
+        eachUser.name.toLowerCase().includes(searchInput.toLowerCase())
+      );
+      if (users) {
+        const userPosts: PostData[] = paginatedCards!.postList.filter((eachPost) =>
+          users.some((user) => user.id === eachPost.userId)
+        );
+        const searchResult: MiniaturePostList = {
+          postList: userPosts,
+          userList: users,
+        };
+        return searchResult;
+      }
+      return paginatedCards;
+    }
+    return paginatedCards;
+  };
+
+  const paginatedAndFilteredCards = searchPostByUser();
+
+  if (paginatedAndFilteredCards.postList.length === 0) {
+    return (
+      <PostGridHolder>
+        <SearchInput onChangeUserInput={({ target }) => setSearchInput(target.value)} />
+        <PaginationManager
+          currentPage={pageNumber}
+          setCurrentPage={setPageNumber}
+          itemsPerPage={postsPerPage}
+          setItemsPerPage={setPostsPerPage}
+        />
+        <Spinner />
+      </PostGridHolder>
+    );
   }
 
   return (
     <PostGridHolder>
-      <SearchInput
-        onChangeUserInput={({ target }) => setSearchInput(target.value)}
-      />
+      <SearchInput onChangeUserInput={({ target }) => setSearchInput(target.value)} />
       <PaginationManager
         currentPage={pageNumber}
         setCurrentPage={setPageNumber}
@@ -34,13 +61,11 @@ const PostGrid = () => {
         setItemsPerPage={setPostsPerPage}
       />
       <PostCreator />
-      {filteredCardList.postList.map((eachPost) => (
+      {paginatedAndFilteredCards.postList.map((eachPost) => (
         <Cards
           key={eachPost.id}
           post={eachPost}
-          user={
-            filteredCardList.userList.find(({ id }) => id === eachPost.userId)!
-          }
+          user={paginatedAndFilteredCards.userList.find(({ id }) => id === eachPost.userId)!}
         />
       ))}
       <PaginationManager

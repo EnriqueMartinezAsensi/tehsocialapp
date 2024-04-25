@@ -1,9 +1,12 @@
 import styled from "styled-components";
 
 export const InputHolder = styled.label`
+  //position: fixed;
   display: flex;
   flex-flow: row;
-  box-sizing: border-box;
+  align-self: center;
+  box-sizing: content-box;
+  z-index: 100;
   width: 60%;
   min-width: 500px;
   max-width: 1200px;

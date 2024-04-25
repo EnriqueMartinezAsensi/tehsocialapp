@@ -1,65 +1,72 @@
-import { useEffect, useState } from "react";
-import { getPaginatedPostsList, getAllPostsList } from "../../api/posts";
+import { useContext, useEffect, useState } from "react";
+import { getPaginatedPostsList } from "../../api/posts";
 import { getUsersList } from "../../api/user";
+import { CardContext } from "../../providers/CardProvider";
 
-const usePostsList = (
-  filterMask: string,
-  page: number,
-  postsPerPage: string
-) => {
-  const [fullCardList, setFullCardList] = useState<MiniaturePostList>();
-  const [isLoading, setIsloading] = useState(true);
+const usePostsList = (page: number, postsPerPage: string) => {
+  const { cardList, setCardList } = useContext(CardContext);
+  const [paginatedCards, setPaginatedCards] = useState<MiniaturePostList>({
+    postList: [],
+    userList: [],
+  });
 
-  const getAllOrSomePosts = () => {
-    if (filterMask || postsPerPage === "All") {
-      return getAllPostsList().then((postData) => {
-        return postData;
-      });
+  const paginationToIds = () => {
+    let idList: number[] = [];
+    let x;
+    for (x = 0; x < Number(postsPerPage); x++) {
+      idList = [...idList, page * Number(postsPerPage) - x];
     }
-    return getPaginatedPostsList(page, postsPerPage).then((postData) => {
-      return postData;
-    });
+    return idList;
   };
 
-  const getPosts = () => {
-    getAllOrSomePosts().then((postData) => {
+  const findPostByIds = () => {
+    const ids = paginationToIds();
+    const cacheCards = cardList.postList.filter(({ id }) => id && ids.includes(id));
+    const missingIds = ids.filter((sampleId) => cacheCards.every(({ id }) => sampleId != id));
+    if (missingIds.length != 0) getPaginatedCards();
+    else {
+      const newPaginatedCards: MiniaturePostList = {
+        userList: cardList.userList,
+        postList: cacheCards,
+      };
+      setPaginatedCards(newPaginatedCards);
+    }
+  };
+
+  const getPaginatedCards = () => {
+    getPaginatedPostsList(page, postsPerPage).then((postData) => {
       const allFoundUsers = postData?.map((posts) => posts.userId);
       const usersNotRepeated = [...new Set(allFoundUsers)];
       getUsersList(usersNotRepeated).then((userdata) => {
-        const miniaturePostList: MiniaturePostList = {
+        const databaseMiniaturePostList: MiniaturePostList = {
           userList: userdata,
           postList: postData,
         };
-        setFullCardList(miniaturePostList);
-        setIsloading(false);
+        setPaginatedCards(databaseMiniaturePostList);
+        const existingPostIDs = cardList.postList.map(({ id }) => id) || [];
+        const existingUserIDs = cardList.userList.map(({ id }) => id) || [];
+        const newPostList = [
+          ...cardList.postList,
+          ...databaseMiniaturePostList.postList.filter(({ id }) => !existingPostIDs.includes(id)),
+        ];
+        const newUserList = [
+          ...cardList.userList,
+          ...databaseMiniaturePostList.userList.filter(({ id }) => !existingUserIDs.includes(id)),
+        ];
+        const newCardList: MiniaturePostList = {
+          userList: newUserList,
+          postList: newPostList,
+        };
+        setCardList(newCardList);
       });
     });
   };
 
-  const searchPostByUser = () => {
-    const users = fullCardList?.userList.filter((eachUser) =>
-      eachUser.name.toLowerCase().includes(filterMask.toLowerCase())
-    );
-    if (users) {
-      const userPosts: PostData[] = fullCardList!.postList.filter((eachPost) =>
-        users.some((user) => user.id === eachPost.userId)
-      );
-      const searchResult: MiniaturePostList = {
-        postList: userPosts,
-        userList: users,
-      };
-      return searchResult;
-    }
-    return fullCardList;
-  };
-
-  const filteredCardList = searchPostByUser();
-
   useEffect(() => {
-    getPosts();
-  }, [page, filterMask, postsPerPage]);
+    findPostByIds();
+  }, [page, postsPerPage]);
 
-  return { filteredCardList, isLoading };
+  return { paginatedCards };
 };
 
 export default usePostsList;

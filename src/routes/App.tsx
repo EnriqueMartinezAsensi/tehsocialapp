@@ -1,4 +1,6 @@
+import { CardProvider } from "../providers/CardProvider";
 import CustomThemeProvider from "../providers/CustomThemeProvider";
+import { PostsProvider } from "../providers/PostProvider";
 import ThemeModeProvider from "../providers/ThemeModeProvider";
 import { ToastProvider } from "../providers/ToastProvider/ToastContext";
 import GlobalStyles from "../theme/GlobalStyles";
@@ -10,7 +12,11 @@ export default function Root() {
     <ThemeModeProvider>
       <CustomThemeProvider>
         <ToastProvider>
-          <AppRoutes />
+          <PostsProvider>
+            <CardProvider>
+              <AppRoutes />
+            </CardProvider>
+          </PostsProvider>
         </ToastProvider>
         <GlobalStyles />
       </CustomThemeProvider>
