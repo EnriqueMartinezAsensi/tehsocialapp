@@ -1,13 +1,7 @@
 import { useState } from "react";
 import ProfileIcon from "../../../../assets/components/svg/ProfileIcon/index";
 
-import {
-  NewPostHolder,
-  SendButton,
-  TextAreaHolder,
-  TextInput,
-  UserName,
-} from "./PostCreator.styled";
+import { NewPostHolder, SendButton, TextAreaHolder, TextInput, UserName } from "./PostCreator.styled";
 import { postNewPost } from "../../../../api/posts";
 import { useToasts } from "../../../../providers/ToastProvider/ToastContext/useToasts";
 
@@ -32,14 +26,8 @@ const PostCreator = () => {
     });
   };
 
-  console.log(newPostUploaded);
-
   return (
-    <NewPostHolder
-      onFocus={() => setIsFocused(true)}
-      onBlur={() => setIsFocused(false)}
-      $isDisplayed={isDisplayed}
-    >
+    <NewPostHolder onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)} $isDisplayed={isDisplayed}>
       <div>
         <ProfileIcon size={35} />
       </div>

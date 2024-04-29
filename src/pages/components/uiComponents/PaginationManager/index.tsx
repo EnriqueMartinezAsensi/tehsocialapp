@@ -1,11 +1,6 @@
 import Arrow from "../../../../assets/components/svg/arrow";
 import { useTheme } from "styled-components";
-import {
-  PageArrowsHolder,
-  PageNumber,
-  PaginationBar,
-  SelectPostsPerPage,
-} from "./PaginationManager.styled";
+import { PageArrowsHolder, PageNumber, PaginationBar, SelectPostsPerPage } from "./PaginationManager.styled";
 
 type PaginationManagerProps = {
   currentPage: number;
@@ -14,12 +9,7 @@ type PaginationManagerProps = {
   setItemsPerPage: (newQuantity: string) => void;
 };
 
-const PaginationManager = ({
-  currentPage,
-  setCurrentPage,
-  itemsPerPage,
-  setItemsPerPage,
-}: PaginationManagerProps) => {
+const PaginationManager = ({ currentPage, setCurrentPage, itemsPerPage, setItemsPerPage }: PaginationManagerProps) => {
   const theme = useTheme();
 
   const substract = () => {
@@ -30,10 +20,7 @@ const PaginationManager = ({
     setCurrentPage(currentPage + 1);
   };
 
-  const handlePageInput: React.ChangeEventHandler<HTMLInputElement> = ({
-    target,
-  }) => {
-    console.log(target.value);
+  const handlePageInput: React.ChangeEventHandler<HTMLInputElement> = ({ target }) => {
     const isValidPage = !isNaN(Number(target.value));
     if (isValidPage) {
       setCurrentPage(Number(target.value));
@@ -46,19 +33,12 @@ const PaginationManager = ({
         <div onClick={() => substract()}>
           <Arrow angle={180} size={25} color={theme.colors.secondary.main} />
         </div>
-        <PageNumber
-          type="text"
-          onChange={handlePageInput}
-          value={currentPage}
-        />
+        <PageNumber type="text" onChange={handlePageInput} value={currentPage} />
         <div onClick={() => add()}>
           <Arrow angle={0} size={25} color={theme.colors.secondary.main} />
         </div>
       </PageArrowsHolder>
-      <SelectPostsPerPage
-        onChange={({ target }) => setItemsPerPage(target.value)}
-        value={itemsPerPage}
-      >
+      <SelectPostsPerPage onChange={({ target }) => setItemsPerPage(target.value)} value={itemsPerPage}>
         <option value="All">All</option>
         <option value="5">5</option>
         <option value="10">10</option>

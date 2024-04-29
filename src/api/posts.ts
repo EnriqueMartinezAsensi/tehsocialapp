@@ -6,10 +6,7 @@ export const getAllPostsList = async () => {
   return axios.get<PostData[]>(`${URL}/posts`).then(({ data }) => data);
 };
 
-export const getPaginatedPostsList = async (
-  page: number,
-  postsPerPage: string
-) => {
+export const getPaginatedPostsList = async (page: number, postsPerPage: string) => {
   return axios
     .get<PostData[]>(`${URL}/posts`, {
       params: { _page: page, _limit: postsPerPage },

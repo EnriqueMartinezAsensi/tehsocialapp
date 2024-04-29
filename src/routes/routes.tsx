@@ -2,13 +2,13 @@ import { RouteObject } from "react-router-dom";
 //Common
 import ErrorPage from "./error-page";
 //Pages
-import PostGrid from "../pages/PostGrid/index";
+import CardList from "../pages/CardList/index";
 import PostDetailed from "../pages/PostDetailed";
 
 const routes: RouteObject[] = [
   {
     path: "/",
-    element: <PostGrid />,
+    element: <CardList />,
     errorElement: <ErrorPage />,
   },
   {
