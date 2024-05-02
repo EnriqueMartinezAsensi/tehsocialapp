@@ -15,11 +15,11 @@ const PostDetailed = () => {
   const isLoading = isPendingPost || isPendingUsers || isPendingComments;
   const isError = isErrorPost || isErrorUsers || isErrorComments;
 
-  const fullPost = {
+  const fullPost: Partial<CompletePost> = {
     post,
     user: usersList ? usersList[0] : undefined,
     comentList: coments,
-  } as CompletePost;
+  };
 
   if (isLoading) {
     return <Spinner />;
@@ -31,7 +31,7 @@ const PostDetailed = () => {
 
   return (
     <PostDetailedHolder>
-      <FullPostRender post={fullPost} />
+      <FullPostRender post={fullPost as CompletePost} />
     </PostDetailedHolder>
   );
 };
