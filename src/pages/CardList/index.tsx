@@ -8,7 +8,9 @@ import { useState } from "react";
 
 import { PostGridHolder } from "./PostGrid.styled";
 import useUsers from "../../api/hooks/useUsers";
-//import useCardList from "../../hooks/useCardList";
+import findUserIds from "../../utils/findUserIds";
+import findPostIds from "../../utils/findPostIds";
+import useCommentCount from "../../api/hooks/useCommentCount";
 
 const CardList = () => {
   const [searchInput, setSearchInput] = useState<string>("");
@@ -16,14 +18,15 @@ const CardList = () => {
   const [postsPerPage, setPostsPerPage] = useState<string>("10");
   const { postsList, isPendingPostsList, isErrorPostsList } = usePostsList(pageNumber, postsPerPage);
 
-  const findUserIds = () => {
-    const allFoundUsers = postsList?.map((posts) => posts.userId);
-    return [...new Set(allFoundUsers)];
-  };
+  const usersKeys = findUserIds(postsList);
 
-  const { usersList, isPendingUsers, isErrorUsers } = useUsers(findUserIds());
-  const isLoading = isPendingPostsList || isPendingUsers;
-  const isError = isErrorPostsList || isErrorUsers;
+  const { usersList, isPendingUsers, isErrorUsers } = useUsers(usersKeys);
+
+  const postIds = findPostIds(postsList);
+
+  const { comentCount, isPendingCommentCount, isErrorCommentCount } = useCommentCount(postIds);
+  const isLoading = isPendingPostsList || isPendingUsers || isPendingCommentCount;
+  const isError = isErrorPostsList || isErrorUsers || isErrorCommentCount;
 
   const filterPosts = () => {
     const users = usersList?.filter((eachUser) => eachUser.name.toLowerCase().includes(searchInput.toLowerCase()));
@@ -66,7 +69,12 @@ const CardList = () => {
       />
       <PostCreator />
       {filterPosts().map((eachPost) => (
-        <Cards key={eachPost.id} post={eachPost} user={usersList?.find(({ id }) => id === eachPost.userId)!} />
+        <Cards
+          key={eachPost.id}
+          post={eachPost}
+          user={usersList?.find(({ id }) => id === eachPost.userId)!}
+          comentCount={comentCount?.find(({ postId }) => postId === eachPost.id)?.commentNumber || 0}
+        />
       ))}
       <PaginationManager
         currentPage={pageNumber}

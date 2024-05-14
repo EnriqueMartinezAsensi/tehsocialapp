@@ -1,22 +1,22 @@
 //PROCESADOS EN AL WEB https://app.quicktype.io/ IMPORTANTE!!!
 
 declare type PostData = {
-  userId: number;
-  id?: number;
+  userId: string;
+  id?: string;
   title?: string;
   body: string;
 };
 
 declare type ComentData = {
-  postId: number;
-  id: number;
+  postId: string;
+  id: string;
   name: string;
   email: string;
   body: string;
 };
 
 declare type UserData = {
-  id: number;
+  id: string;
   name: string;
   username: string;
   email: string;
@@ -54,4 +54,9 @@ declare type CompletePost = {
   post: PostData;
   user: UserData;
   comentList: ComentData[];
+};
+
+declare type CommentCount = {
+  postId: string;
+  commentNumber: number;
 };

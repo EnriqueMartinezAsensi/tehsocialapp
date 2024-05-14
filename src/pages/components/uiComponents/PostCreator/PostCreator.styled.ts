@@ -33,6 +33,36 @@ export const UserName = styled.h5`
   margin: 12px;
 `;
 
+export const TitleInput = styled.textarea`
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  display: inline-flex;
+  flex-grow: 0;
+  flex-wrap: wrap;
+  resize: none;
+  justify-content: start;
+  align-self: start;
+  height: min-content;
+  width: 95%;
+  height: 20%;
+  padding: 2px;
+  margin: 10px;
+  border: 0;
+  border-radius: ${({ theme }) => theme.radiuses.small}px;
+  outline: 0;
+  -webkit-box-shadow: 0px 0px 5px 5px ${({ theme }) => theme.colors.light.main};
+  -moz-box-shadow: 0px 0px 5px 5px ${({ theme }) => theme.colors.light.main};
+  box-shadow: 0px 0px 5px 5px ${({ theme }) => theme.colors.light.main};
+  color: ${({ theme }) => theme.colors.dark.main};
+  background: transparent;
+  &::placeholder {
+    ${({ theme }) => theme.colors.dark.main};
+  }
+`;
+
 export const TextInput = styled.textarea`
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

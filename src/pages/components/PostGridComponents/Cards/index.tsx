@@ -8,17 +8,21 @@ import {
   CardUserName,
   FullCard,
   ProfileIcon,
+  TextGlobeHolder,
 } from "./Cards.style";
+import TextGlobe from "../../../../assets/components/svg/textGlobe";
 
 type CardsProps = {
   post: PostData;
   user: UserData;
+  comentCount?: number;
 };
 
 //https://www.facebook.com/
 
-const Cards = ({ post, user }: CardsProps) => {
+const Cards = ({ post, user, comentCount }: CardsProps) => {
   const navigate = useNavigate();
+
   return !post || !user ? (
     <div></div>
   ) : (
@@ -30,6 +34,10 @@ const Cards = ({ post, user }: CardsProps) => {
       </CardHeader>
       <CardBody>{post.body}</CardBody>
       <CardLikeLine></CardLikeLine>
+      <TextGlobeHolder>
+        <TextGlobe />
+        {comentCount}
+      </TextGlobeHolder>
     </FullCard>
   );
 };

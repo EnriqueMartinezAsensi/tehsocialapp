@@ -8,7 +8,7 @@ import useComments from "../../api/hooks/useComments";
 
 const PostDetailed = () => {
   const { postID } = useParams();
-  const { post, isPendingPost, isErrorPost } = usePost(Number(postID));
+  const { post, isPendingPost, isErrorPost } = usePost(postID);
   const { usersList, isPendingUsers, isErrorUsers } = useUsers(post ? [post?.userId] : []);
   const { coments, isPendingComments, isErrorComments } = useComments(post?.id);
 

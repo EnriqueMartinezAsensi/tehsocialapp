@@ -1,29 +1,38 @@
 import { useState } from "react";
 import ProfileIcon from "../../../../assets/components/svg/ProfileIcon/index";
 
-import { NewPostHolder, SendButton, TextAreaHolder, TextInput, UserName } from "./PostCreator.styled";
-import { postNewPost } from "../../../../api/posts";
+import { NewPostHolder, SendButton, TextAreaHolder, TextInput, TitleInput, UserName } from "./PostCreator.styled";
+
 import { useToasts } from "../../../../providers/ToastProvider/ToastContext/useToasts";
+import useUploadPost from "../../../../api/hooks/useUploadPost";
 
 const PostCreator = () => {
   const [isFocused, setIsFocused] = useState(false);
   const [newPostText, setNewPostText] = useState<string>("");
+  const [newPostTitle, setNewPostTitle] = useState<string>("");
   const isDisplayed = isFocused || !!newPostText;
-  const userID = 11;
-  const [newPostUploaded, setNewPostUploaded] = useState<PostData>();
+  const userID = "66336ddc9fd43539291a60b8";
   const { createToast } = useToasts();
+  const { mutateAsync } = useUploadPost();
 
   const sendPost = () => {
-    const post: PostData = {
-      userId: userID,
-      body: newPostText,
-    };
-    postNewPost(post).then((postedPost) => {
-      setNewPostUploaded(postedPost);
-      setNewPostText("");
-      setIsFocused(false);
-      createToast("Message posted.", "success", 4000);
-    });
+    if (newPostTitle === "" || newPostText === "") {
+      createToast("Faltan campos.", "warning", 3000);
+    } else {
+      const post: PostData = {
+        userId: userID,
+        title: newPostTitle,
+        body: newPostText,
+      };
+      mutateAsync(post)
+        .then(() => {
+          createToast("Message posted.", "success", 4000);
+          setNewPostText("");
+          setNewPostTitle("");
+          setIsFocused(false);
+        })
+        .catch(() => createToast("Error uploading.", "error", 4000));
+    }
   };
 
   return (
@@ -32,7 +41,14 @@ const PostCreator = () => {
         <ProfileIcon size={35} />
       </div>
       <TextAreaHolder>
-        {isDisplayed ? <UserName>Enrique Martinez</UserName> : null}
+        {isDisplayed ? <UserName>Ervin Howell</UserName> : null}
+        {isDisplayed ? (
+          <TitleInput
+            placeholder="Título"
+            onChange={({ target }) => setNewPostTitle(target.value)}
+            value={newPostTitle}
+          ></TitleInput>
+        ) : null}
         <TextInput
           placeholder="¿En qué estás pensando?"
           onChange={({ target }) => setNewPostText(target.value)}
@@ -45,6 +61,6 @@ const PostCreator = () => {
 };
 
 export default PostCreator;
-function useToast(): { createToast: any } {
+/*function useToast(): { createToast: any } {
   throw new Error("Function not implemented.");
-}
+}*/

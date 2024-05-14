@@ -53,6 +53,17 @@ export const CardLikeLine = styled.hr`
   grid-row: 6/7;
   grid-column: 1/3;
   color: ${({ theme }) => theme.colors.light.main};
-  margin: 10px 20px 10px 20px; /* Arriba | Derecha | Abajo | Izquierda */
+  margin: 10px 20px 5px 20px; /* Arriba | Derecha | Abajo | Izquierda */
   line-height: 1;
+`;
+
+export const TextGlobeHolder = styled.div`
+  grid-row: 7/7;
+  grid-column: 1/3;
+  display: flex;
+  align-self: center;
+  align-items: center;
+  justify-self: center;
+  margin: 0px;
+  padding: 0px;
 `;

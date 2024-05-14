@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getComents } from "../coments";
 
-const useComments = (postId?: number) => {
+const useComments = (postId?: string) => {
   const { data, isPending, isError } = useQuery({
     queryKey: ["comments", postId],
     queryFn: () => getComents(postId!),
