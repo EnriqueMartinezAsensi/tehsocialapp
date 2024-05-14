@@ -1,4 +1,4 @@
-import Cards from "../components/PostGridComponents/Cards";
+import Cards from "../components/CardListComponents/Cards";
 import SearchInput from "../components/uiComponents/SearchInput";
 import PaginationManager from "../components/uiComponents/PaginationManager";
 import Spinner from "../../assets/components/svg/spinner";
