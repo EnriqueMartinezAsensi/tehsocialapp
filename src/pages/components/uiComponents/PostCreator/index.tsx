@@ -5,6 +5,7 @@ import { NewPostHolder, SendButton, TextAreaHolder, TextInput, TitleInput, UserN
 
 import { useToasts } from "../../../../providers/ToastProvider/ToastContext/useToasts";
 import useUploadPost from "../../../../api/hooks/useUploadPost";
+import { useTranslation } from "react-i18next";
 
 const PostCreator = () => {
   const [isFocused, setIsFocused] = useState(false);
@@ -14,6 +15,7 @@ const PostCreator = () => {
   const userID = "66336ddc9fd43539291a60b8";
   const { createToast } = useToasts();
   const { mutateAsync } = useUploadPost();
+  const { t } = useTranslation();
 
   const sendPost = () => {
     if (newPostTitle === "" || newPostText === "") {
@@ -44,13 +46,13 @@ const PostCreator = () => {
         {isDisplayed ? <UserName>Ervin Howell</UserName> : null}
         {isDisplayed ? (
           <TitleInput
-            placeholder="Título"
+            placeholder={t("title")}
             onChange={({ target }) => setNewPostTitle(target.value)}
             value={newPostTitle}
           ></TitleInput>
         ) : null}
         <TextInput
-          placeholder="¿En qué estás pensando?"
+          placeholder={t("post-sentence")}
           onChange={({ target }) => setNewPostText(target.value)}
           value={newPostText}
         />

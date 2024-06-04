@@ -11,6 +11,7 @@ import useUsers from "../../api/hooks/useUsers";
 import findUserIds from "../../utils/findUserIds";
 import findPostIds from "../../utils/findPostIds";
 import useCommentCount from "../../api/hooks/useCommentCount";
+import LanguageSelector from "../components/uiComponents/LanguageSelector";
 
 const CardList = () => {
   const [searchInput, setSearchInput] = useState<string>("");
@@ -60,6 +61,7 @@ const CardList = () => {
 
   return (
     <PostGridHolder>
+      <LanguageSelector />
       <SearchInput onChangeUserInput={({ target }) => setSearchInput(target.value)} />
       <PaginationManager
         currentPage={pageNumber}
